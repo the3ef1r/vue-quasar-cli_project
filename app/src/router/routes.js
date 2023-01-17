@@ -3,7 +3,18 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      {
+        name: 'main-page', path: '', component: () => import('pages/main'), props: true,
+      },
+    ],
+  },
+  {
+    path: '/form',
+    component: () => import('layouts/RootLayout.vue'),
+    children: [
+      {
+        name: 'form-page', path: '', component: () => import('pages/form'), props: true,
+      },
     ],
   },
 

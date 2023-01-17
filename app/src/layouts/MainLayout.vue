@@ -28,7 +28,7 @@
           <q-btn
             icon="location_on"
             flat
-            :label="userLocation"
+            :label="currentCity"
           />
         </div>
       </q-toolbar>
@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {
-      return this.getCurrentCity();
+      return this.getCurrentCity;
     },
     currentDate() {
       return moment().format('DD.MM.YYYY');
