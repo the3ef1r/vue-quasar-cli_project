@@ -1,12 +1,13 @@
 {
-  "name": "app",
-  "version": "0.0.2",
-  "description": "A Quasar Project",
-  "productName": "Quasar App",
-  "author": "Developer",
+  "name": "App",
+  "version": "0.0.3",
+  "description": "frontend",
+  "productName": "БФЛ",
+  "author": "developer",
   "private": true,
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && quasar dev",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },

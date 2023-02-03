@@ -1,1 +1,1 @@
-export const getRequestCount = async () => '1234';
+export const getRequestCount = async () => '2142';

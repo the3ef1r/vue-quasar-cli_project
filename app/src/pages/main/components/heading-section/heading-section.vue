@@ -3,42 +3,39 @@
     <section
       class="section"
     >
-      <div class="text-white">
-        <div class="row">
-          <div class="col-10">
-            <div
-              class="q-mb-lg text-h4 text-weight-bolder q-ma-none"
-            >
-              Подбери лучшую компанию в 1 клик, чтобы списать долги по кредитам и микрозаймам
-            </div>
-          </div>
-          <div class="col-2">
-            <q-img
-              src="img/logo_girl.png"
-              spinner-color="white"
-              style="height: 140px; max-width: 250px"
-            />
-          </div>
+      <div class="row no-wrap">
+        <div
+          class="q-md-mb-lg heading-h4 text-weight-bolder q-ma-none"
+        >
+          Чтобы списать долги по кредитам и
+          микрозаймам подбери <span class="text-secondary">в 1 клик</span>
+          лучшую компанию
         </div>
-        <div class="q-mb-lg">
-          Получите расчёт стоимости
-          полного списания долгов в ТОП-6 юридических
-          компаниях России по банкротству физических лиц
-        </div>
-        <div class="q-mb-lg text-italic">
-          На основании закона №127-ФЗ граждане РФ, которые не могут
-          рассчитаться с кредиторами, могут воспользоваться правом
-          на законное списание долгов. Должники получают возможность
-          освободиться от кредитов и начать свою финансовую историю с нуля.
-        </div>
-        <div class="row">
-          <q-btn
-            class="bg-secondary text-white"
-            label="Подбери компанию прямо сейчас"
-            icon-right="trending_flat"
-            size="xl"
-          />
-        </div>
+        <q-img
+          style="max-width:440px;"
+          src="img/logo_girl_3.svg"
+        />
+      </div>
+
+      <div class="q-mb-lg text-body1">
+        Сокращаем 10 часов вашего времени на подборе компаний и экономим
+        до 50 тыс. руб. при заключении договора с юридической компанией
+      </div>
+      <div class="row">
+        <q-btn
+          flat
+          label="Подбери компанию прямо сейчас"
+          icon-right="arrow_outward"
+          size="xl"
+          class="button"
+          outline
+        />
+      </div>
+      <div class="q-mb-lg text-italic">
+        На основании закона №127-ФЗ граждане РФ, которые не могут
+        рассчитаться с кредиторами, могут воспользоваться правом на законное списание долгов.
+        Должники получают возможность освободиться от кредитов
+        и начать свою финансовую историю с нуля
       </div>
     </section>
   </div>
@@ -50,7 +47,11 @@ export default {
 };
 </script>
 <style lang="scss">
-.heading-section {
-  background: radial-gradient(50% 50% at 50% 50%, #48ACE8 0%, #028CD6 100%);
+.heading-section section {
+  background-color: #FAFAFA;
+  border-radius: 20px;
+  @media (min-width: $breakpoint-sm-min) {
+    margin-top: 50px;
+  }
 }
 </style>

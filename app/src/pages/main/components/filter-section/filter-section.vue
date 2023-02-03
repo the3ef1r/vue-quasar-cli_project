@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     method() {
-      console.log('do something');
+      return '123';
     },
   },
 };

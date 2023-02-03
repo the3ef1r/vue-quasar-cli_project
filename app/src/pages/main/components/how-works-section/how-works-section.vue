@@ -2,7 +2,7 @@
   <div class="how-works-section">
     <section class="section">
       <div
-        class="text-h4 q-mb-md text-weight-bolder"
+        class="q-mb-md heading-h4"
       >
         Как работает сервис
       </div>
@@ -64,6 +64,5 @@ export default {
     right: 20px;
     top: 12px;
   }
-
 }
 </style>

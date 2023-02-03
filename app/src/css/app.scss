@@ -1,7 +1,39 @@
 // app global css in SCSS form
+
+@import 'fonts/unbound-font.css';
+@import 'fonts/inter-tight-font.css';
+
 section.section {
-  padding: 70px 0;
-  max-width: 1100px;
+  @media (max-width: $breakpoint-xs-max) {
+    padding: 10px;
+  }
+  padding: 20px 60px;
   min-height: 300px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+.main-font-bold,.heading-h4{
+  font-family: 'Unbounded', cursive;
+  font-style: normal;
+  font-weight: 600;
+}
+.right-icon-secondary {
+  .q-icon.on-right {
+    color: $secondary;
+  }
+}
+.heading-h4 {
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  font-size: 32px;
+
+}
+.text-body1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }

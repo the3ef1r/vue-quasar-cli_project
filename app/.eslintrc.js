@@ -68,7 +68,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
 
     'prefer-promise-reject-errors': 'off',
-
+    'func-names': 'off',
     'vue/multi-word-component-names': 'off',
 
     // allow debugger during development only
