@@ -1,6 +1,6 @@
 <template>
   <q-page class="form q-px-xl q-py-md bg-grey-1">
-    <section class="section">
+    <section class="wrapper">
       <div class="text-center text-h2 text-weight-bold">
         Заявка на процедуру банкротства
       </div>

@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header
       elevated
-      class="bg-white bg-primary text-white"
+      class="bg-white text-white"
     >
       <q-toolbar
         class=" text-dark toolbar"
@@ -13,9 +13,13 @@
             src="icons/logo.svg"
           />
         </q-toolbar-title>
-
         <counter class="layout_counter q-mr-xl" />
         <div class="location">
+          <!--          <q-btn-->
+          <!--            color="primary"-->
+          <!--            icon="night_sight_auto_off"-->
+          <!--            @click="changeDarkMode"-->
+          <!--          />-->
           <q-btn
             icon="img:icons/location.svg"
             flat
@@ -25,28 +29,14 @@
             @click="changeCity"
           />
         </div>
-        <q-btn
-          class="xs"
-          flat
-          dense
-          icon="img:icons/menu.svg"
-        />
+        <drawer-menu @change-city="changeCity" />
       </q-toolbar>
     </q-header>
 
     <q-page-container>
       <router-view />
     </q-page-container>
-    <footer
-      class="footer"
-    >
-      <div class="section">
-        <q-img
-          style="max-width:332px"
-          src="icons/footer-logo.svg"
-        />
-      </div>
-    </footer>
+    <footer-component />
     <change-city-dialog ref="changeCityDialog" />
   </q-layout>
 </template>
@@ -54,23 +44,32 @@
 import Counter from 'layouts/counter/counter';
 import { mapGetters } from 'vuex';
 import ChangeCityDialog from 'components/change-city-dialog/change-city-dialog';
+import FooterComponent from 'layouts/components/footer';
+import DrawerMenu from 'layouts/components/drawer-menu';
 
 export default {
   name: 'MainLayout',
-  components: { ChangeCityDialog, Counter },
-
+  components: {
+    DrawerMenu, FooterComponent, ChangeCityDialog, Counter,
+  },
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {
       return this.getCurrentCity;
     },
+    drawerWidth() {
+      return this.$q.screen.width;
+    },
   },
   data() {
     return {
-      dialogModel: false,
+      drawer: false,
     };
   },
   methods: {
+    changeDarkMode() {
+      this.$q.dark.toggle();
+    },
     changeCity() {
       this.$refs.changeCityDialog.open();
     },
@@ -84,20 +83,14 @@ export default {
   }
 }
 .toolbar,.footer .section {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 .toolbar {
   background: white;
-  padding: 10px 0;
+  padding: 10px 20px;
   @media (max-width: $breakpoint-xs-max) {
     padding: 10px;
-  }
-}
-.footer {
-  background: #4D4D4D;
-  .section {
-    padding: 50px 0;
   }
 }
 </style>

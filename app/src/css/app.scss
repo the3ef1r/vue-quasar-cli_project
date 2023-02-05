@@ -3,14 +3,13 @@
 @import 'fonts/unbound-font.css';
 @import 'fonts/inter-tight-font.css';
 
-section.section {
-  @media (max-width: $breakpoint-xs-max) {
-    padding: 10px;
+.box-shadow-main {
+  @include box-shadow($shadow-main);
+}
+.q-page {
+  section + section {
+    margin-top: 40px;
   }
-  padding: 20px 60px;
-  min-height: 300px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 .main-font-bold,.heading-h4{
   font-family: 'Unbounded', cursive;
@@ -22,12 +21,22 @@ section.section {
     color: $secondary;
   }
 }
+.base-button {
+  text-transform: initial;
+  //padding: 14px 30px;
+  height: 60px;
+  min-width: 190px;
+}
+.main-grey {
+  color: $grey-main
+}
 .heading-h4 {
   @media (max-width: $breakpoint-xs-max) {
     font-size: 24px;
     line-height: 32px;
   }
   font-size: 32px;
+  line-height: 40px;
 
 }
 .text-body1 {
@@ -36,4 +45,10 @@ section.section {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+.q-flex-row-xs {
+  @media (max-width: $breakpoint-xs-max) {
+    display: flex;
+    align-items: center;
+  }
 }

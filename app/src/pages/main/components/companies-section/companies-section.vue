@@ -1,25 +1,15 @@
 <template>
-  <div class="companies-section">
-    <section class="section">
-      <div
-        class="text-h5 q-mb-md text-weight-medium"
-      >
-        Мы подобрали для вас 6 компаний по банкротству в Нижнем Новгороде
-      </div>
-      <q-separator />
-      компания Зенит: оставить заявку -
-      <q-btn
-        @click="goToForm('Зенит')"
-        section
-        label="goToForm"
-      />
-    </section>
-  </div>
+  <section-wrapper>
+    asd
+  </section-wrapper>
 </template>
 
 <script>
+import SectionWrapper from 'components/section-wrapper';
+
 export default {
   name: 'CompaniesSection',
+  components: { SectionWrapper },
   methods: {
     goToForm(companyName) {
       const routeData = this.$router.resolve({

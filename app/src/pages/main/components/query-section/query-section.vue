@@ -1,6 +1,6 @@
 <template>
-  <div class="query-section bg-grey-4">
-    <section class="section">
+  <section class="query-section bg-grey-4">
+    <div class="wrapper">
       <div class="text-h4 text-weight-bolder q-mb-md">
         Повысить вероятность списания долгов в 3 раза по самой выгодной цене
       </div>
@@ -27,8 +27,8 @@
           @click="goToForm"
         />
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>

@@ -42,7 +42,7 @@ import { cities } from 'src/assets/cities';
 import { mapMutations } from 'vuex';
 
 export default {
-  name: 'ChangeCityDialog',
+  name: 'MainFormDialog',
   data() {
     return {
       show: false,
@@ -66,7 +66,6 @@ export default {
     },
     setCity(name) {
       this.setCurrentCity(name);
-      this.close();
     },
   },
 };

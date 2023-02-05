@@ -1,62 +1,119 @@
 <template>
-  <div class="trust-section">
-    <section class="section">
-      <div class="row">
-        <div class="col-4">
-          <q-img
-            src="img/logo_girl2.png"
-            spinner-color="white"
-          />
+  <section-wrapper class="trust-section">
+    <div class="column">
+      <div class="q-mb-md heading-h4">
+        Почему нам доверяют?
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card bg-secondary text-white">
+        <q-icon
+          size="lg"
+          name="mdi-check-circle"
+        />
+        <div class="text-subtitle1">
+          Воспользуйтесь услугой  подбора компании бесплатно
         </div>
-        <div class="col-8 column">
-          <div
-            class="text-h4 q-mb-xl text-weight-bolder text-white"
-          >
-            Почему нам доверяют?
-          </div>
-          <div
-            class="row justify-start items-start q-mb-sm no-wrap"
-            v-for="(item,index) in items"
-            :key="index"
-          >
-            <q-icon
-              name="check"
-              size="md"
-              color="secondary"
-              class="bg-white q-mr-md rounded-borders"
-            />
-            <div class="col-auto text-white">
-              <div class="text-subtitle1 text-weight-medium q-mb-sm">
-                {{ item.text }}
-              </div>
-              <div class="text-body2 text-weight-regular">
-                {{ item.textSecondary }}
-              </div>
-            </div>
-          </div>
+        <div class="text-body1">
+          Наши услуги вам ничего не стоят
         </div>
       </div>
-    </section>
-  </div>
+      <div class="card bg-grey-7 text-white">
+        <q-icon
+          size="lg"
+          name="mdi-check-circle"
+        />
+        <div class="text-subtitle1">
+          Сэкономьте свое время
+        </div>
+        <div class="text-body1">
+          Вам не нужно тратить время на подбор предложения и самим разбираться с условиями
+        </div>
+      </div>
+      <div class="card bg-grey-8">
+        <q-icon
+          size="lg"
+          color="secondary"
+          name="mdi-check-circle"
+        />
+        <div class="text-white text-subtitle1">
+          Индивидуальное решение
+        </div>
+        <div class="text-white text-body1">
+          После отправки заявки для вас будет подобрано
+          решение с учетом вашего финансового состояния
+        </div>
+      </div>
+      <div class="card bg-grey-2">
+        <q-icon
+          size="lg"
+          color="secondary"
+          name="mdi-check-circle"
+        />
+        <div class="text-dark text-subtitle1">
+          Ваши данные под защитой
+        </div>
+        <div class="text-grey-main text-body1">
+          Вы сами решаете в какие компании отправить заявку.
+          Ваши личные данные не передаются третьим лицам, а технология передачи данных защищена
+        </div>
+      </div>
+    </div>
+  </section-wrapper>
 </template>
 
 <script>
+import SectionWrapper from 'components/section-wrapper';
+
 export default {
   name: 'TrustSection',
+  components: { SectionWrapper },
   data() {
     return {
-      items: [
-        { text: 'Воспользуйтесь услугой  подбора компании бесплатно', textSecondary: 'Наши услуги вам ничего не стоят.' },
-        { text: 'Сэкономьте свое время', textSecondary: 'Вам не нужно тратить время на подбор предложения и самим разбираться с условиями' },
-        { text: 'Ваши данные под защитой', textSecondary: 'Вы сами решаете в какие компании отправить заявку. Ваши личные данные не передаются третьим лицам, а технология передачи данных защищена' },
-        { text: 'Индивидуальное решение', textSecondary: 'После отправки заявки для вас будет подобрано решение с учетом вашего финансового состояния' },
-      ],
     };
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .trust-section {
-  background: radial-gradient(50% 50% at 50% 50%, #48ACE8 0%, #028CD6 100%);
+  .grid {
+    @media (max-width: $breakpoint-xs-max) {
+      display: flex;
+      flex-direction: column;
+    }
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    .card {
+      padding: 35px 30px 40px 40px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      @include box-shadow($shadow-main);
+      .text-subtitle1 {
+        font-family: 'Unbounded', cursive;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 10px;
+        margin-top: 25px;
+      }
+      .text-body1 {
+        font-family: 'Inter Tight', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        margin-top: auto;
+        line-height: 22px;
+      }
+    }
+    .card:nth-child(1){ grid-area: 1 / 1 / 2 / 4; }
+    .card:nth-child(2){ grid-area: 1 / 4 / 2 / 6; }
+    .card:nth-child(3){ grid-area: 2 / 1 / 3 / 3; }
+    .card:nth-child(4){ grid-area: 2 / 3 / 3 / 6; }
+  }
 }
 </style>

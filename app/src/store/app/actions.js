@@ -1,4 +1,4 @@
-import { backendApi } from 'src/api/backend';
+// import { backendApi } from 'src/api/backend';
 import { notifyWarning } from 'src/services/service-notification';
 
 export const init = async ({ commit, dispatch }) => {
@@ -11,11 +11,12 @@ export const init = async ({ commit, dispatch }) => {
 };
 export const exampleFetchData = async ({ commit }) => {
   try {
-    const query = {
-      setting: '321',
-      value: '123',
-    };
-    const { data } = await backendApi.post('/test/', query);
+    // const query = {
+    //   setting: '321',
+    //   value: '123',
+    // };
+    // const { data } = await backendApi.post('/test/', query);
+    const data = 'data';
     commit('setExampleDataToState', data);
   } catch (error) {
     notifyWarning('', error);

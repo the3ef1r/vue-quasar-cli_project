@@ -1,6 +1,6 @@
 <template>
-  <div class="about-us-section">
-    <section class="section">
+  <section class="about-us-section">
+    <div class="wrapper">
       <div class="text-h4 text-weight-bolder q-mb-xl">
         Помогаем подобрать компанию, учитывая ваши запросы
       </div>
@@ -22,8 +22,8 @@
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
