@@ -30,9 +30,9 @@
           <div class="column items-center justify-center q-my-xl">
             <counter class="layout_counter q-mb-xl" />
             <div
-              @click="scrollTo"
               v-for="(item,index) in items"
               :key="index"
+              @click="scrollToElement(item.sectionId)"
             >
               {{ item.name }}
             </div>
@@ -41,6 +41,7 @@
           <q-separator />
           <div class="column items-center q-my-xl ">
             <q-btn
+              v-if="$q.screen.width > 500"
               icon="img:icons/location.svg"
               flat
               class="main-font-bold right-icon-secondary"
@@ -48,16 +49,36 @@
               icon-right="expand_more"
               @click="$emit('change-city')"
             />
+            <q-select
+              v-else
+              v-model="city"
+              emit-value
+              :options="cityList"
+              use-input
+              color="secondary"
+              input-debounce="0"
+              behavior="menu"
+              label="Город"
+              @filter="filterFn"
+              hint="Введите название города"
+              lazy-rules
+              class="full-width"
+              :rules="[ val => val && val.length > 0 || 'Выберите значение из списка']"
+            >
+              <template #before-options>
+                Выберите вариант или продолжите ввод
+              </template>
+            </q-select>
           </div>
 
           <q-separator />
-
           <q-btn
-            rounded
             label="Подобрать компанию"
-            color="secondary"
-            class="base-button"
             icon-right="arrow_outward"
+            size="xl"
+            color="secondary"
+            class="button-custom right-icon-secondary q-mt-xl q-mx-md"
+            outline
           />
         </div>
 
@@ -77,6 +98,10 @@
 <script>
 import { mapGetters } from 'vuex';
 import Counter from 'layouts/counter/counter';
+import { cities } from 'assets/cities';
+import { scroll } from 'quasar';
+
+const { getScrollTarget, setScrollPosition } = scroll;
 
 export default {
   name: 'DrawerMenu',
@@ -86,11 +111,14 @@ export default {
   data() {
     return {
       drawer: false,
+      cities,
+      cityList: cities,
+      city: '',
       items: [
-        { name: 'Как работает сервис' },
-        { name: 'Подобрать компанию' },
-        { name: 'Почему нам доверяю' },
-        { name: 'Полезная информация' },
+        { name: 'Как работает сервис', sectionId: 'how-works-section' },
+        { name: 'Подобрать компанию', sectionId: 'about-us-section' },
+        { name: 'Почему нам доверяют', sectionId: 'trust-section' },
+        { name: 'Полезная информация', sectionId: 'helpful-info' },
       ],
     };
   },
@@ -104,9 +132,25 @@ export default {
     },
   },
   methods: {
-    scrollTo() {
+    scrollToElement(el) {
+      const element = document.getElementById(el);
+      const target = getScrollTarget(element);
+      const offset = element.offsetTop;
+      const duration = 1000;
+      setScrollPosition(target, offset, duration);
       this.drawer = false;
-      return '';
+    },
+    filterFn(val, update) {
+      if (val === '') {
+        update(() => {
+          this.cityList = cities;
+        });
+        return;
+      }
+      update(() => {
+        const needle = val.toLowerCase();
+        this.cityList = cities.filter((v) => v.toLowerCase().indexOf(needle) > -1);
+      });
     },
   },
 };

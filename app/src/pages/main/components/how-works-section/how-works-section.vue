@@ -1,5 +1,5 @@
 <template>
-  <section-wrapper>
+  <section-wrapper id="how-works-section">
     <div class="column">
       <div
         class="q-mb-md heading-h4"

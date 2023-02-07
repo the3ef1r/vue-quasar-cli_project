@@ -85,7 +85,15 @@ module.exports = function (/* ctx */) {
     devServer: {
       https: false,
       port: 8080,
+      // vueDevtools: true,
       open: true, // opens browser window automatically
+      // proxy: {
+      //   '/api/': {
+      //     target: 'our local url',
+      //     secure: false,
+      //     changeOrigin: false,
+      //   },
+      // },
     },
 
     // https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 .counter {
   border: 1px solid rgba(0, 0, 0, 0.08);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
   border-radius: 80px;
   background-color: white;
   transition: all .3s ease-in;
@@ -54,6 +54,7 @@ export default {
   justify-content: space-between;
   &:hover {
     filter: none;
+    //filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     cursor: pointer;
   }
 }

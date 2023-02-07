@@ -4,34 +4,38 @@
     full-width
     @before-hide="close"
   >
-    <q-card>
-      <q-card-section class="row items-center q-pb-none">
-        <div class="heading-h4">
+    <q-card class="q-sm-pa-xl">
+      <q-btn
+        icon="close"
+        flat
+        round
+        dense
+        class="text-grey-5 close-btn"
+        v-close-popup
+      />
+      <q-card-section
+        class="column q-pb-none"
+        style="position: sticky;
+          top: 0px;
+          background: #fff;
+          z-index: 10;"
+      >
+        <div
+          class="heading-h4 q-mb-xs"
+        >
           Ваш город
         </div>
-        <q-space />
-        <q-btn
-          icon="close"
-          flat
-          round
-          dense
-          class="text-grey-5"
-          v-close-popup
-        />
-      </q-card-section>
-
-      <q-card-section>
         <q-input
           v-model="search"
+          color="secondary"
           label="Введите название города"
         />
-        <div
-          v-for="(city,index) in filtredCities"
-          :key="index"
-          @click="setCity(city)"
-        >
-          {{ city }}
-        </div>
+      </q-card-section>
+      <q-card-section>
+        <my-component
+          :data="filtredCities"
+          @set-city="setCity"
+        />
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -40,9 +44,11 @@
 <script>
 import { cities } from 'src/assets/cities';
 import { mapMutations } from 'vuex';
+import MyComponent from 'components/change-city-dialog/myComponent';
 
 export default {
   name: 'ChangeCityDialog',
+  components: { MyComponent },
   data() {
     return {
       show: false,
@@ -71,3 +77,11 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss">
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+</style>

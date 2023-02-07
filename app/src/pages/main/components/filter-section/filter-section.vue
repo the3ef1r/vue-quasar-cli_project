@@ -1,5 +1,8 @@
 <template>
-  <section-wrapper class="filter-section">
+  <section-wrapper
+    class="filter-section"
+    id="filter-section"
+  >
     <div class="box-shadow-main">
       <div class="column q-mb-md">
         <div
@@ -11,7 +14,7 @@
           >{{ getCurrentCity }}</a>
         </div>
         <div class="text-body2">
-          На данный момент нами отобрано 6 компаний в вашем регионе.
+          На данный момент нами отобрано {{ companies.length }} компаний в вашем регионе.
           Для того, чтобы воспользоваться государственной процедурой списания
           долгов для физических лиц просто отправьте заявку.
         </div>
@@ -26,6 +29,7 @@
             flat
             label="Сумма долга"
             v-model="sum"
+            behavior="menu"
           />
         </div>
         <div class="col-auto">
@@ -67,10 +71,13 @@ import { mapGetters } from 'vuex';
 import ChangeCityDialog from 'components/change-city-dialog/change-city-dialog';
 import SectionWrapper from 'components/section-wrapper';
 import CompanyItem from 'components/company-item/company-item';
+import MainFormDialog from 'components/main-form-dialog/main-form-dialog';
 
 export default {
   name: 'FilterSection',
-  components: { CompanyItem, SectionWrapper, ChangeCityDialog },
+  components: {
+    MainFormDialog, CompanyItem, SectionWrapper, ChangeCityDialog,
+  },
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {

@@ -1,7 +1,7 @@
 <template>
   <section-wrapper>
     <div class="row justify-between items-center">
-      <div class="col-lg-auto col-xs-12 q-flex-row-xs">
+      <div class="col-md-auto col-xs-12 q-flex-row-xs">
         <q-icon
           name="img:icons/heading-section/icon_1.svg"
           size="xl"
@@ -16,7 +16,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-lg-auto col-xs-12 q-flex-row-xs">
+      <div class="col-md-auto col-xs-12 q-flex-row-xs">
         <q-icon
           name="img:icons/heading-section/icon_2.svg"
           size="xl"
@@ -31,7 +31,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-lg-auto col-xs-12 q-flex-row-xs">
+      <div class="col-md-auto col-xs-12 q-flex-row-xs">
         <q-icon
           name="img:icons/heading-section/icon_3.svg"
           size="xl"
@@ -46,7 +46,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-lg-auto col-xs-12 q-flex-row-xs">
+      <div class="col-md-auto col-xs-12 q-flex-row-xs">
         <q-icon
           name="img:icons/heading-section/icon_4.svg"
           size="xl"

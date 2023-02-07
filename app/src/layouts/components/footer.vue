@@ -5,7 +5,7 @@
     <div class="column wrapper">
       <q-img
         style="max-width:332px"
-        src="icons/footer-logo.svg"
+        src="icons/footer/footer-logo.svg"
       />
       <div class="q-my-md inline-sm">
         <div class="">

@@ -1,5 +1,8 @@
 <template>
-  <section class="about-us-section">
+  <section
+    class="about-us-section"
+    id="about-us-section"
+  >
     <div class="wrapper">
       <div class="text-h4 text-weight-bolder q-mb-xl">
         Помогаем подобрать компанию, учитывая ваши запросы

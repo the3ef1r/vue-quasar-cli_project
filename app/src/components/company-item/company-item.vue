@@ -6,89 +6,93 @@
     <div
       class="wrapper-test"
     >
-      <transition-group>
-        <div
-          class="company-item row items-center justify-between"
-          v-for="(company,index) in companies"
-          :key="index"
-        >
-          <div class="col q-mr-md">
-            <div class="row">
-              <q-img
-                class="logo"
-                src="img/logo-zenit.svg"
-                style="max-width: 52px;"
-              />
-              <div class="col-auto column">
-                <div class="name">
-                  {{ company.name }}
-                </div>
-                <div class="description main-grey">
-                  {{ company.description }}
-                </div>
+      <div
+        class="company-item row items-center justify-between"
+        v-for="(company,index) in companies"
+        :key="index"
+      >
+        <div class="col q-mr-md">
+          <div class="row">
+            <q-img
+              class="logo"
+              src="img/logo-zenit.svg"
+              style="max-width: 52px;"
+            />
+            <div class="col-auto column">
+              <div class="name">
+                {{ company.name }}
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row">
-              <div class="col-auto column">
-                <div class="">
-                  <div class="name">
-                    {{ company.cost }}₽
-                  </div>
-                  <div class="description main-grey">
-                    стоимость
-                    <div v-if="company.microCredit">
-                      рассрочка до 24 месяцев
-                    </div>
-                  </div>
-                </div>
+              <div class="description main-grey">
+                {{ company.description }}
               </div>
-              <div class="col-auto q-ml-xl column">
-                <div class="">
-                  <div class="cost text-secondary">
-                    {{ company.maxCost }} ₽
-                  </div>
-                  <div class="cost-description">
-                    выгода
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="row items-center justify-start">
-              <q-circular-progress
-                show-value
-                font-size="14px"
-                :value="getValue(company.deals)"
-                size="65px"
-                color="secondary"
-              >
-                {{ getValue(company.deals) }}%
-              </q-circular-progress>
-              <div class="">
-                <div>
-                  <span class="main-grey q-mr-xs">Всего дел:</span>
-                  <span class="text-dark">{{ company.deals?.all }}</span>
-                </div>
-                <div>
-                  <span class="main-grey q-mr-xs">Списано:</span>
-                  <span class="text-dark">{{ company.deals?.completed }}</span>
-                </div>
-              </div>
-              <!--          <q-btn-->
-              <!--            label="Оставить заявку"-->
-              <!--            icon-right="arrow_outward"-->
-              <!--            size="xl"-->
-              <!--            color="secondary"-->
-              <!--            class="button-custom right-icon-secondary "-->
-              <!--            outline-->
-              <!--          />-->
             </div>
           </div>
         </div>
-      </transition-group>
+        <div class="col">
+          <div class="row">
+            <div class="col-auto column">
+              <div class="">
+                <div class="name">
+                  {{ company.cost }}₽
+                </div>
+                <div class="description main-grey">
+                  стоимость
+                  <div v-if="company.microCredit">
+                    рассрочка до 24 месяцев
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto q-ml-xl column">
+              <div class="">
+                <div class="cost text-secondary">
+                  {{ company.maxCost }} ₽
+                </div>
+                <div class="cost-description">
+                  выгода
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="row items-center justify-start">
+            <q-circular-progress
+              show-value
+              font-size="14px"
+              :value="getValue(company.deals)"
+              size="65px"
+              color="secondary"
+            >
+              {{ getValue(company.deals) }}%
+            </q-circular-progress>
+            <div class="">
+              <div>
+                <span class="main-grey q-mr-xs">Всего дел:</span>
+                <span class="text-dark">{{ company.deals?.all }}</span>
+              </div>
+              <div>
+                <span class="main-grey q-mr-xs">Списано:</span>
+                <span class="text-dark">{{ company.deals?.completed }}</span>
+              </div>
+            </div>
+            <!--          <q-btn-->
+            <!--            label="Оставить заявку"-->
+            <!--            icon-right="arrow_outward"-->
+            <!--            size="xl"-->
+            <!--            color="secondary"-->
+            <!--            class="button-custom right-icon-secondary "-->
+            <!--            outline-->
+            <!--          />-->
+          </div>
+        </div>
+      </div>
+      <q-inner-loading
+        :showing="loading"
+        label="Идет подбор"
+        color="secondary"
+        label-class="text-dark"
+      />
     </div>
     <div class="test column text-center">
       <q-btn
@@ -110,6 +114,7 @@
         label="Отправить заявку во все компании"
         icon-right="trending_flat"
         size="xl"
+        @click="$emit('form-click')"
       />
       <div class="">
         Сократим время подбора компании и сэкономим ваши деньги
@@ -136,6 +141,7 @@ export default {
   data() {
     return {
       visible: false,
+      loading: false,
       companies: [],
     };
   },
@@ -149,7 +155,11 @@ export default {
   },
   methods: {
     shakeAll() {
-      this.companies.sort(() => 0.5 - Math.random());
+      this.loading = true;
+      setTimeout(() => {
+        this.companies.sort(() => 0.5 - Math.random());
+        this.loading = false;
+      }, 3000);
     },
     showAll() {
       this.shakeAll();
@@ -158,7 +168,7 @@ export default {
     getValue(deals) {
       const { all, completed } = deals;
       if (!all || !completed) return 0;
-      return ((completed * 100) / all).toFixed(0);
+      return Number(((completed * 100) / all).toFixed(0));
     },
   },
 };
@@ -175,7 +185,7 @@ export default {
   }
   &.hide-all {
     .test {
-      z-index: 10000;
+      z-index: 100;
       position: absolute;
       bottom: 0;
       left: 0;

@@ -8,15 +8,6 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/form',
-    component: () => import('layouts/RootLayout.vue'),
-    children: [
-      {
-        name: 'form-page', path: '', component: () => import('pages/form'), props: true,
-      },
-    ],
-  },
 
   // Always leave this as last one,
   // but you can also remove it

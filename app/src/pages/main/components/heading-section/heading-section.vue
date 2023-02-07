@@ -38,6 +38,7 @@
             class="button-custom right-icon-secondary q-my-md"
             :class="isMobile ? 'full-width' : ''"
             outline
+            @click="scrollToElement('filter-section')"
           />
         </div>
         <div class="row">
@@ -67,6 +68,9 @@
 
 <script>
 import SectionWrapper from 'components/section-wrapper';
+import { scroll } from 'quasar';
+
+const { getScrollTarget, setScrollPosition } = scroll;
 
 export default {
   name: 'HeadingSection',
@@ -74,6 +78,15 @@ export default {
   computed: {
     isMobile() {
       return this.$q.screen.width < 500;
+    },
+  },
+  methods: {
+    scrollToElement(el) {
+      const element = document.getElementById(el);
+      const target = getScrollTarget(element);
+      const offset = element.offsetTop;
+      const duration = 1000;
+      setScrollPosition(target, offset, duration);
     },
   },
 };

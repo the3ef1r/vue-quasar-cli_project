@@ -1,5 +1,8 @@
 <template>
-  <section-wrapper>
+  <section-wrapper
+    class="helpful-info"
+    id="helpful-info"
+  >
     <div class="q-mb-md heading-h4">
       Полезная информация
     </div>

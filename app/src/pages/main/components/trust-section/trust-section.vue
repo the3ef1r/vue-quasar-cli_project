@@ -1,5 +1,8 @@
 <template>
-  <section-wrapper class="trust-section">
+  <section-wrapper
+    class="trust-section"
+    id="trust-section"
+  >
     <div class="column">
       <div class="q-mb-md heading-h4">
         Почему нам доверяют?

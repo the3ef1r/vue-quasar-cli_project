@@ -29,7 +29,10 @@
             @click="changeCity"
           />
         </div>
-        <drawer-menu @change-city="changeCity" />
+        <drawer-menu
+          v-if="drawerWidth < 500"
+          @change-city="changeCity"
+        />
       </q-toolbar>
     </q-header>
 
@@ -73,6 +76,7 @@ export default {
     changeCity() {
       this.$refs.changeCityDialog.open();
     },
+
   },
 };
 </script>
