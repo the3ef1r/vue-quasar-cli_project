@@ -1,23 +1,26 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <div class="fullscreen bg-secondary text-white text-center q-pa-md flex flex-center">
     <div>
-      <div style="font-size: 30vh">
+      <div
+        style="font-size: 20vh"
+        class="heading-h4"
+      >
         404
       </div>
 
       <div
-        class="text-h3"
-        style="opacity:.4"
+        class="text-h3 q-mt-xl"
+        style="opacity:.6"
       >
         Произошла неполадочка... сейчас починим
       </div>
 
       <q-btn
-        class="q-mt-xl"
-        color="white"
-        text-color="blue"
+        class="q-mt-xl bg-white"
         unelevated
+        size="md"
         to="/"
+        text-color="secondary"
         label="Назад"
         no-caps
       />
