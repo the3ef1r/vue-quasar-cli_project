@@ -1,7 +1,10 @@
 <template>
-  <section-wrapper>
-    <div class="row justify-between items-center">
-      <div class="col-md-auto col-xs-12 q-flex-row-xs">
+  <section-wrapper
+    class="icons-info-section"
+    id="icons-info-section"
+  >
+    <div class="icons-columns">
+      <div class="icon-item">
         <q-icon
           name="img:icons/heading-section/icon_1.svg"
           size="xl"
@@ -16,7 +19,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-md-auto col-xs-12 q-flex-row-xs">
+      <div class="icon-item">
         <q-icon
           name="img:icons/heading-section/icon_2.svg"
           size="xl"
@@ -31,7 +34,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-md-auto col-xs-12 q-flex-row-xs">
+      <div class="icon-item">
         <q-icon
           name="img:icons/heading-section/icon_3.svg"
           size="xl"
@@ -46,7 +49,7 @@
         class="full-width q-my-md"
         v-if="isMobile"
       />
-      <div class="col-md-auto col-xs-12 q-flex-row-xs">
+      <div class="icon-item">
         <q-icon
           name="img:icons/heading-section/icon_4.svg"
           size="xl"
@@ -69,11 +72,20 @@ export default {
   components: { SectionWrapper },
   computed: {
     isMobile() {
-      return this.$q.screen.width < 500;
+      return this.$q.screen.width < 599.98;
     },
   },
 };
 </script>
 <style lang="scss">
-
+.icons-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: $breakpoint-xs-max) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
 </style>

@@ -25,7 +25,7 @@ export const exampleFetchData = async ({ commit }) => {
 export const fetchCurrentCity = async ({ commit }) => {
   try {
     // const { data } = await backendApi.post('/test/', query);
-    const data = 'Нижний новгород';
+    const data = '';
     commit('setCurrentCity', data);
   } catch (error) {
     notifyWarning('', error);

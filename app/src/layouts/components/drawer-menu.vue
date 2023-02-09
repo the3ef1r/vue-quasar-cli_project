@@ -14,7 +14,7 @@
       overlay
     >
       <q-scroll-area class="fit">
-        <div class="column">
+        <div class="column scroll-wrapper">
           <div
             class="column items-center q-my-lg"
             style="height: 75px;"
@@ -125,7 +125,7 @@ export default {
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {
-      return this.getCurrentCity;
+      return this.getCurrentCity ? this.getCurrentCity : '';
     },
     drawerWidth() {
       return this.$q.screen.width;
@@ -157,6 +157,9 @@ export default {
 </script>
 
 <style lang="scss">
+.scroll-wrapper {
+  padding: 10px;
+}
 .close-icon {
   position: absolute;
   right: 5px;

@@ -43,6 +43,7 @@
             class="base-button"
             :class="isMobile ? 'full-width' : ''"
             icon-right="arrow_outward"
+            @click="scrollToElement('filter-section')"
           />
         </div>
       </div>
@@ -61,13 +62,25 @@
 
 <script>
 import SectionWrapper from 'components/section-wrapper';
+import { scroll } from 'quasar';
+
+const { getScrollTarget, setScrollPosition } = scroll;
 
 export default {
   name: 'OneRequestSection',
   components: { SectionWrapper },
   computed: {
     isMobile() {
-      return this.$q.screen.width < 500;
+      return this.$q.screen.width < 599.98;
+    },
+  },
+  methods: {
+    scrollToElement(el) {
+      const element = document.getElementById(el);
+      const target = getScrollTarget(element);
+      const offset = element.offsetTop;
+      const duration = 1000;
+      setScrollPosition(target, offset, duration);
     },
   },
 };

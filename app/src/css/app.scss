@@ -11,6 +11,28 @@
     margin-top: 40px;
   }
 }
+.main-font {
+  font-family: 'Unbounded', cursive;
+  font-weight: 400;
+}
+.underline {
+  text-decoration: underline;
+}
+.q-btn--round .q-btn__wrapper {
+  min-width: 2.5em;
+  min-height: 2.5em;
+}
+.hoverable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.fz-18px {
+  font-size: 1.125rem;
+}
+.secondary-font {
+  font-family: 'Inter Tight', sans-serif;
+}
 .main-font-bold,.heading-h4{
   font-family: 'Unbounded', cursive;
   font-style: normal;

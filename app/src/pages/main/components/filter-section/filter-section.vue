@@ -9,18 +9,18 @@
           class="heading-h4 q-mb-md text-weight-bolder"
         >
           Банкротство физических лиц в <a
-            class="text-secondary"
+            class="text-secondary hoverable underline"
             @click="changeCity"
-          >{{ getCurrentCity }}</a>
+          >{{ currentCity }}</a>
         </div>
         <div class="text-body2">
           На данный момент нами отобрано {{ companies.length }} компаний в вашем регионе.
-          Для того, чтобы воспользоваться государственной процедурой списания
+          Для того, чтобы воспользоваться<br> государственной процедурой списания
           долгов для физических лиц просто отправьте заявку.
         </div>
       </div>
-      <div class="row items-center q-col-gutter-md">
-        <div class="col-4">
+      <div class="row items-center q-col-gutter-md filters">
+        <div class="col-md-4">
           <q-select
             :options="options"
             outlined
@@ -35,6 +35,7 @@
         <div class="col-auto">
           <q-checkbox
             v-model="radio"
+            color="secondary"
             label="Оформить беспроцентную рассрочку"
           />
         </div>
@@ -50,10 +51,12 @@
         </div>
       </div>
       <q-separator class="q-my-lg" />
-      <div class="text-h5">
-        Мы подобрали для вас
-        <span class="text-secondary">{{ companies.length }} компаний</span>
-        по банкротству в {{ currentCity }}
+      <div class="">
+        <div class="main-font fz-18px q-mb-lg">
+          Мы подобрали для вас
+          <span class="text-secondary">{{ companies.length }} компаний</span>
+          по банкротству в {{ getCurrentCity }}
+        </div>
         <company-item
           ref="companies"
           :data="companies"
@@ -72,6 +75,7 @@ import ChangeCityDialog from 'components/change-city-dialog/change-city-dialog';
 import SectionWrapper from 'components/section-wrapper';
 import CompanyItem from 'components/company-item/company-item';
 import MainFormDialog from 'components/main-form-dialog/main-form-dialog';
+import { cityIn } from 'lvovich';
 
 export default {
   name: 'FilterSection',
@@ -81,7 +85,7 @@ export default {
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {
-      return this.getCurrentCity;
+      return this.getCurrentCity ? cityIn(this.getCurrentCity) : 'Выберите город';
     },
   },
   data() {
@@ -188,6 +192,14 @@ export default {
 </script>
 <style lang="scss">
 .filter-section .box-shadow-main  {
+  @media (max-width: $breakpoint-xs-max) {
+    padding: 0;
+    .filters {
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+    }
+  }
   padding: 20px 40px;
   background-color: #FAFAFA;
   border-radius: 20px;

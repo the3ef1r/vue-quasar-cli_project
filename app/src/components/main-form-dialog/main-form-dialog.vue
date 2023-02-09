@@ -58,7 +58,10 @@
           </template>
         </div>
       </q-card-section>
-      <q-card-section v-if="!requested">
+      <q-card-section
+        v-if="!requested"
+        class="q-mb-xl-md"
+      >
         <q-form
           @submit="onSubmit"
           class="q-col-gutter-md"
@@ -200,7 +203,7 @@
               <div class="q-gutter-sm column">
                 <div class="text-weight-bold">
                   Имеется ли обязательство по выплате алиментов?
-                  <span class="text-secondary"> *</span>
+                  <span class="text-secondary">*</span>
                 </div>
                 <q-radio
                   v-for="(item,index) in aliment"
@@ -231,18 +234,31 @@
               </div>
             </div>
           </div>
-          <q-separator />
-          <q-btn
-            label="Отправить"
-            icon-right="arrow_outward"
-            size="xl"
-            color="secondary"
-            class="button-custom right-icon-secondary q-mt-xl q-mx-md"
-            outline
-            @click="onSubmit"
-          />
         </q-form>
       </q-card-section>
+
+      <q-separator />
+
+      <q-card-actions
+        align="between"
+        class="items-center"
+      >
+        <q-checkbox
+          color="secondary"
+          label="Согласие на обработку персональных данных и данных об абонентах *"
+          v-model="agree"
+        />
+        <q-btn
+          :disable="!agree"
+          label="Отправить"
+          icon-right="arrow_outward"
+          color="secondary"
+          class="base-button right-icon-secondary"
+          outline
+          rounded
+          @click="onSubmit"
+        />
+      </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
@@ -261,6 +277,7 @@ export default {
       show: false,
       popup: false,
       requested: false,
+      agree: false,
       cities,
       cityList: cities,
       search: '',
@@ -368,8 +385,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .test {
-  max-width: 1000px;
+  max-width: 1100px;
+  @media (max-width: $breakpoint-xs-max) {
+    padding: 0;
+  }
+  padding: 10px 90px 50px 90px;
   min-width: 50%;
+
 }
 .close-icon {
   position: absolute;

@@ -58,7 +58,7 @@ export default {
   computed: {
     ...mapGetters('app', ['getCurrentCity']),
     currentCity() {
-      return this.getCurrentCity;
+      return this.getCurrentCity ? this.getCurrentCity : 'Выберите город';
     },
     drawerWidth() {
       return this.$q.screen.width;

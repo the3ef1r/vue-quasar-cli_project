@@ -3,7 +3,7 @@
     <div
       v-for="(item,index) in letters"
       :key="index"
-      class="block"
+      class="item"
     >
       <div class="letter">
         {{ item }}
@@ -54,16 +54,22 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   columns: auto 4;
+  @media (min-width: $breakpoint-xl-min) {
+    columns: auto 5;
+  }
+  @media (max-width: $breakpoint-md-max) {
+    columns: auto 3;
+  }
   column-gap: 32px;
   margin-top: 20px;
   @media (max-width: $breakpoint-xs-max) {
     height: auto;
     overflow-x: hidden;
   }
-  .block {
-    min-height: 130px;
+  .item {
     font-family: 'Inter Tight', sans-serif;
     margin-bottom: 20px;
+    break-inside: avoid;
   }
   .list + .list {
     margin-top: 10px;

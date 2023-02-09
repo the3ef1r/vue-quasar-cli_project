@@ -77,7 +77,7 @@ export default {
   components: { SectionWrapper },
   computed: {
     isMobile() {
-      return this.$q.screen.width < 500;
+      return this.$q.screen.width < 599.98;
     },
   },
   methods: {

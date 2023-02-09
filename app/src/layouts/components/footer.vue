@@ -14,15 +14,22 @@
         <div class="">
           ОГРН 1176313006924 | ИНН 6330075453
         </div>
-        <div class="">
-          samara@vse-bankrotstvo.ru | 8 (800) 350-08-14
+        <div class="links">
+          <a href="mailto:samara@vse-bankrotstvo.ru">Напишите нам</a>|
+          <a href="tel:+78003500814">8 (800) 350-08-14</a>
         </div>
       </div>
       <div class="inline-sm">
-        <div class="">
+        <div
+          class="hoverable"
+          @click="$refs.baseDialog.open()"
+        >
           Пользовательское соглашение
         </div>
-        <div class="">
+        <div
+          class="hoverable"
+          @click="$refs.baseDialog2.open()"
+        >
           Политика обработки персональных данных
         </div>
       </div>
@@ -40,14 +47,28 @@
         © {{ currentYear }}, Федеральная служба помощи. Все права защищены
       </div>
     </div>
+    <base-dialog
+      ref="baseDialog"
+      title="Пользовательское соглашение"
+    >
+      Пользовательское соглашение
+    </base-dialog>
+    <base-dialog
+      ref="baseDialog2"
+      title="Политика обработки персональных данных"
+    >
+      Политика обработки персональных данных
+    </base-dialog>
   </footer>
 </template>
 
 <script>
 import moment from 'moment';
+import BaseDialog from 'components/base-dialog/base-dialog';
 
 export default {
   name: 'FooterComponent',
+  components: { BaseDialog },
   computed: {
     currentYear() {
       return moment().format('YYYY');
@@ -90,6 +111,13 @@ export default {
         margin-left: 10px;
       }
       margin-left: 20px;
+    }
+  }
+  .links {
+    a {
+      color: white;
+      margin-right: 6px;
+      text-decoration: none;
     }
   }
 }
