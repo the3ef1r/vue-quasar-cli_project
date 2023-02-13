@@ -1,6 +1,7 @@
 <template>
   <q-dialog
     v-model="show"
+    :full-height="isMobile"
     @before-hide="close"
   >
     <q-card class="q-sm-pa-xl">
@@ -45,7 +46,9 @@ export default {
     };
   },
   computed: {
-
+    isMobile() {
+      return this.$q.screen.width < 599.98;
+    },
   },
   methods: {
     open() {

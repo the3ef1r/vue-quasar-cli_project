@@ -1,1 +1,3 @@
-export const getRequestCount = async () => '2142';
+import moment from 'moment';
+
+export const getRequestCount = async () => Number(moment().unix() % 1245) + 2142;

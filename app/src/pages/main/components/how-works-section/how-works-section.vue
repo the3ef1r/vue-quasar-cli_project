@@ -16,7 +16,7 @@
             <div class="index">
               {{ `0${index+1}` }}
             </div>
-            <div class="full-height column justify-between items-start">
+            <div class="full-height column  items-start">
               <div class="text-subtitle1 q-mb-sm text-weight-bolder">
                 {{ item.subtitle }}
               </div>
@@ -70,7 +70,8 @@ export default {
   border-radius: 20px;
   padding: 50px 50px 50px 35px;
   @media (max-width: $breakpoint-xs-max) {
-    padding: 25px;
+    padding: 50px 25px;
+    height: 300px;
   }
   overflow: hidden;
   .index {
@@ -113,6 +114,7 @@ export default {
 .text-subtitle1 {
   @media (max-width: $breakpoint-xs-max) {
     font-size: 16px;
+    min-height: 26px;
   }
   font-size: 20px;
   min-height: 56px;

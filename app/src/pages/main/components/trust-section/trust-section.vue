@@ -79,10 +79,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .trust-section {
+  .heading-h4 {
+    @media (max-width: $breakpoint-xs-max) {
+      font-size: 20px;
+    }
+  }
   .grid {
     @media (max-width: $breakpoint-xs-max) {
       display: flex;
       flex-direction: column;
+      grid-row-gap: 10px;
     }
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -91,6 +97,9 @@ export default {
     grid-row-gap: 30px;
     .card {
       padding: 35px 30px 40px 40px;
+      @media (max-width: $breakpoint-xs-max) {
+        padding: 20px;
+      }
       border-radius: 20px;
       display: flex;
       flex-direction: column;
@@ -99,6 +108,10 @@ export default {
         font-family: 'Unbounded', cursive;
         font-style: normal;
         font-weight: 500;
+        @media (max-width: $breakpoint-xs-max) {
+          font-size: 16px;
+          line-height: 22px;
+        }
         font-size: 20px;
         line-height: 26px;
         margin-bottom: 10px;
@@ -111,6 +124,10 @@ export default {
         font-size: 16px;
         margin-top: auto;
         line-height: 22px;
+        @media (max-width: $breakpoint-xs-max) {
+          font-weight: 400;
+          font-size: 13px;
+        }
       }
     }
     .card:nth-child(1){ grid-area: 1 / 1 / 2 / 4; }

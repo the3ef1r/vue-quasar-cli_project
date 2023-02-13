@@ -2,17 +2,10 @@
   <q-dialog
     v-model="show"
     full-width
+    :full-height="isMobile"
     @before-hide="close"
   >
     <q-card class="q-sm-pa-xl">
-      <q-btn
-        icon="close"
-        flat
-        round
-        dense
-        class="text-grey-5 close-btn"
-        v-close-popup
-      />
       <q-card-section
         class="column q-pb-none"
         style="position: sticky;
@@ -29,6 +22,14 @@
           v-model="search"
           color="secondary"
           label="Введите название города"
+        />
+        <q-btn
+          icon="close"
+          flat
+          round
+          dense
+          class="text-grey-5 close-btn"
+          v-close-popup
         />
       </q-card-section>
       <q-card-section>
@@ -60,6 +61,9 @@ export default {
     filtredCities() {
       return cities.filter((name) => name.toLowerCase().indexOf(this.search.toLowerCase()) > -1);
     },
+    isMobile() {
+      return this.$q.screen.width < 599.98;
+    },
   },
   methods: {
     ...mapMutations('app', ['setCurrentCity']),
@@ -79,6 +83,11 @@ export default {
 </script>
 <style scoped lang="scss">
 .close-btn {
+  @media (max-width: $breakpoint-xs-max) {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
   position: absolute;
   top: 10px;
   right: 10px;

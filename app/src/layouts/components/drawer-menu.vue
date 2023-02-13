@@ -66,7 +66,9 @@
               :rules="[ val => val && val.length > 0 || 'Выберите значение из списка']"
             >
               <template #before-options>
-                Выберите вариант или продолжите ввод
+                <div class="q-py-sm q-px-md bg-grey-1">
+                  Выберите вариант или продолжите ввод
+                </div>
               </template>
             </q-select>
           </div>

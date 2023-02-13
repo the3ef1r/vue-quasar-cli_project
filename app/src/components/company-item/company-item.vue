@@ -58,7 +58,7 @@
                 font-size="14px"
                 :value="getValue(company.deals)"
                 size="65px"
-                thickness=".1"
+                :thickness="0.1"
                 rounded
                 color="secondary"
                 class="q-mr-md"
@@ -121,7 +121,7 @@
                 font-size="14px"
                 :value="getValue(company.deals)"
                 :size="isMobile ? '54px' : '65px'"
-                thickness=".1"
+                :thickness="0.1"
                 angle="1"
                 rounded
                 color="secondary"
@@ -263,6 +263,16 @@ export default {
 <style lang="scss" scoped>
 .progress_info {
   min-width: 120px;
+  @media (max-width: $breakpoint-xs-max) {
+    div {
+      margin-left: 10px;
+    }
+  }
+}
+@media (max-width: $breakpoint-xs-max) {
+.base-button {
+  margin-bottom: 20px;
+}
 }
 .logo-img {
   width: 52px;
@@ -323,6 +333,9 @@ export default {
 .companies-list {
   position: relative;
   min-height: 200px;
+  @media (max-width: $breakpoint-xs-max) {
+    padding-bottom: 50px;
+  }
   .wrapper-items {
     overflow: hidden;
     max-height: 100%;
@@ -335,6 +348,11 @@ export default {
     font-weight: 500;
     font-size: 1.125rem;
     color: #4D4D4D;
+    @media (max-width: $breakpoint-xs-max) {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
   .companies-list__text3 {
     font-family: 'Inter Tight', sans-serif;
@@ -343,6 +361,11 @@ export default {
     line-height: 16px;
     font-size: .95rem;
     color: #898989;
+    @media (max-width: $breakpoint-xs-max) {
+
+      font-size: 11px;
+      line-height: 130%;
+    }
   }
   &.hide-all {
     .button-hide-all {
@@ -376,6 +399,7 @@ export default {
     display: block;
     .logo-img {
       margin-right: 10px;
+      margin-bottom: 10px;
     }
   }
   grid-column-gap: 20px;
@@ -406,6 +430,11 @@ export default {
     line-height: 18px;
     font-weight: 400;
     max-width: 370px;
+    @media (max-width: $breakpoint-xs-max) {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 130%;
+    }
   }
   .cost {
     @media (max-width: $breakpoint-xs-max) {

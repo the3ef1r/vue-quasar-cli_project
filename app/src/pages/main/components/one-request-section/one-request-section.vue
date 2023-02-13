@@ -25,7 +25,7 @@
               name="mdi-check-circle"
               color="secondary"
               class="q-mr-sm"
-            />Увеличить вероятностьодобрения заявки
+            />Увеличить вероятность одобрения заявки
           </li>
           <li>
             <q-icon

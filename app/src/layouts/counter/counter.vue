@@ -53,9 +53,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   &:hover {
-    filter: none;
+    //filter: none;
     //filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    cursor: pointer;
+    //cursor: pointer;
   }
 }
 .text {

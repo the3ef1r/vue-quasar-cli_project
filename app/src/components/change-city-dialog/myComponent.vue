@@ -63,6 +63,7 @@ export default {
   column-gap: 32px;
   margin-top: 20px;
   @media (max-width: $breakpoint-xs-max) {
+    columns: auto 1;
     height: auto;
     overflow-x: hidden;
   }

@@ -50,11 +50,14 @@
           />
         </div>
       </div>
-      <q-separator class="q-my-lg" />
+      <q-separator
+        v-if="$q.screen.width > 599.99"
+        class="q-my-lg"
+      />
       <div class="">
         <div class="main-font fz-18px q-mb-lg">
           Мы подобрали для вас
-          <span class="text-secondary">{{ companies.length }} компаний</span>
+          <span class="text-secondary">{{ companies.length }} {{ companyWord }}</span>
           по банкротству в {{ getCurrentCity }}
         </div>
         <company-item
@@ -87,6 +90,17 @@ export default {
     currentCity() {
       return this.getCurrentCity ? cityIn(this.getCurrentCity) : 'Выберите город';
     },
+    companyWord() {
+      const { length } = this.companies;
+      const names = [
+        { length: 1, value: 'компанию' },
+        { length: 2, value: 'компании' },
+        { length: 5, value: 'компаний' },
+      ];
+      if (length === 1) return names[0].value;
+      if (length >= 5) return names[2].value;
+      return names[1].value;
+    },
   },
   data() {
     return {
@@ -111,72 +125,6 @@ export default {
             completed: 25586,
           },
         },
-        {
-          name: 'Контора с длинным названием',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: true,
-          deals: {
-            all: 12390,
-            completed: 9109,
-          },
-        },
-        {
-          name: 'ООО Рога и Копыта',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: false,
-          deals: {
-            all: 25827,
-            completed: 12463,
-          },
-        },
-        {
-          name: 'ООО Рога и Копыта',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: true,
-          deals: {
-            all: 25827,
-            completed: 16234,
-          },
-        },
-        {
-          name: 'ООО Рога и Копыта',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: false,
-          deals: {
-            all: 9631,
-            completed: 9611,
-          },
-        },
-        {
-          name: 'ООО Рога и Копыта',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: true,
-          deals: {
-            all: 1652,
-            completed: 1251,
-          },
-        },
-        {
-          name: 'Кусок кала с длинным названием',
-          description: 'Федеральная еще длинее названиеюридическая компания',
-          cost: 'от 10 тыс.',
-          maxCost: 'до 100 тыс.',
-          microCredit: true,
-          deals: {
-            all: 25827,
-            completed: 19241,
-          },
-        },
       ],
     };
   },
@@ -191,13 +139,28 @@ export default {
 };
 </script>
 <style lang="scss">
+.filter-section {
+  .wrapper {
+    @media (max-width: $breakpoint-xs-max) {
+
+    background-color: #fafafa;
+    }
+  }
+}
 .filter-section .box-shadow-main  {
   @media (max-width: $breakpoint-xs-max) {
-    padding: 0;
+    box-shadow: none;
+    padding: 40px 0 0;
+    .fz-18px {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+    }
     .filters {
       flex-direction: column;
       justify-content: stretch;
       align-items: stretch;
+      margin-bottom: 30px;
     }
   }
   padding: 20px 40px;

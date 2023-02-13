@@ -15,6 +15,9 @@
   font-family: 'Unbounded', cursive;
   font-weight: 400;
 }
+.text-grey-main {
+  color: $grey-main;
+}
 .underline {
   text-decoration: underline;
 }
@@ -58,9 +61,11 @@
   }
 }
 .heading-h4 {
+  color: $dark;
   @media (max-width: $breakpoint-xs-max) {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 500;
   }
   font-size: 32px;
   line-height: 40px;

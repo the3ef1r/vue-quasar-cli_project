@@ -87,5 +87,14 @@ export default {
     align-items: flex-start;
     justify-content: flex-start;
   }
+  .icon-item {
+    @media (max-width: $breakpoint-xs-max) {
+    display: flex;
+    align-items: center;
+      .q-icon {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 </style>

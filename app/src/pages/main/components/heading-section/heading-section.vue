@@ -43,7 +43,7 @@
         </div>
         <div class="row">
           <div class="col-auto">
-            <div class="text-italic text-body2 text-grey-6 ">
+            <div class="text-italic text-body2 text-mobile">
               На основании закона №127-ФЗ граждане РФ, которые не могут
               рассчитаться с кредиторами, могут воспользоваться
               правом на законное списание долгов.
@@ -92,15 +92,28 @@ export default {
 };
 </script>
 <style lang="scss">
+.heading-section {
+  @media (max-width: $breakpoint-xs-max) {
+    .wrapper {
+      background-color: #fafafa;
+    }
+  }
+}
 .heading-section .box-shadow-main  {
   padding: 70px 10px 20px 50px;
   background-color: #FAFAFA;
   border-radius: 20px;
   @media (max-width: $breakpoint-xs-max) {
-    padding: 50px 0 0;
-  }
-  @media (min-width: $breakpoint-sm-min) {
+    padding: 50px 0 50px;
+    box-shadow: none;
     margin-top: 10px;
+  }
+  .text-mobile {
+    @media (max-width: $breakpoint-xs-max) {
+    font-size: 11px;
+    line-height: 130%;
+    margin-bottom: 50px;
+    }
   }
 }
 .button-custom {
