@@ -16,7 +16,7 @@
       <q-scroll-area class="fit">
         <div class="column scroll-wrapper">
           <div
-            class="column items-center q-my-lg"
+            class="column items-center q-my-md"
             style="height: 75px;"
           >
             <q-img
@@ -27,7 +27,7 @@
 
           <q-separator />
 
-          <div class="column items-center justify-center q-my-xl">
+          <div class="column items-center justify-center q-my-md">
             <counter class="layout_counter q-mb-xl" />
             <div
               v-for="(item,index) in items"
@@ -39,7 +39,7 @@
           </div>
 
           <q-separator />
-          <div class="column items-center q-my-xl ">
+          <div class="column items-center q-my-md ">
             <q-btn
               v-if="$q.screen.width > 500"
               icon="img:icons/location.svg"
@@ -57,12 +57,14 @@
               use-input
               color="secondary"
               input-debounce="0"
+              outlined
               behavior="menu"
               label="Город"
               @filter="filterFn"
               hint="Введите название города"
               lazy-rules
               class="full-width"
+              @input="setCity"
               :rules="[ val => val && val.length > 0 || 'Выберите значение из списка']"
             >
               <template #before-options>
@@ -79,8 +81,9 @@
             icon-right="arrow_outward"
             size="xl"
             color="secondary"
-            class="button-custom right-icon-secondary q-mt-xl q-mx-md"
+            class="button-custom right-icon-secondary q-mt-lg q-mx-md"
             outline
+            @click="scrollToElement('filter-section')"
           />
         </div>
 
@@ -98,7 +101,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import Counter from 'layouts/counter/counter';
 import { cities } from 'assets/cities';
 import { scroll } from 'quasar';
@@ -118,7 +121,7 @@ export default {
       city: '',
       items: [
         { name: 'Как работает сервис', sectionId: 'how-works-section' },
-        { name: 'Подобрать компанию', sectionId: 'about-us-section' },
+        { name: 'Подобрать компанию', sectionId: 'filter-section' },
         { name: 'Почему нам доверяют', sectionId: 'trust-section' },
         { name: 'Полезная информация', sectionId: 'helpful-info' },
       ],
@@ -134,6 +137,10 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('app', ['setCurrentCity']),
+    setCity() {
+      this.setCurrentCity(this.city);
+    },
     scrollToElement(el) {
       const element = document.getElementById(el);
       const target = getScrollTarget(element);

@@ -56,7 +56,17 @@ module.exports = {
     'no-void': 'off',
     'no-nested-ternary': 'off',
     'max-classes-per-file': 'off',
-
+    "max-len": "off",
+    "vue/max-len": [
+      "error",
+      {
+        "code": 120,
+        "template": 9000,
+        "ignoreTemplateLiterals": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true
+      }
+    ],
     'import/first': 'off',
     'import/named': 'error',
     'import/namespace': 'error',

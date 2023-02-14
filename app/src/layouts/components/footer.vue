@@ -15,7 +15,7 @@
           ОГРН 1176313006924 | ИНН 6330075453
         </div>
         <div class="links">
-          <a href="mailto:samara@vse-bankrotstvo.ru">Напишите нам</a>|
+          <a href="mailto:info@fsp-help.ru">Напишите нам</a>|
           <a href="tel:+78003500814">8 (800) 350-08-14</a>
         </div>
       </div>
@@ -51,13 +51,13 @@
       ref="baseDialog"
       title="Пользовательское соглашение"
     >
-      Пользовательское соглашение
+      <politics-component />
     </base-dialog>
     <base-dialog
       ref="baseDialog2"
       title="Политика обработки персональных данных"
     >
-      Политика обработки персональных данных
+      <terms-use-component />
     </base-dialog>
   </footer>
 </template>
@@ -65,10 +65,12 @@
 <script>
 import moment from 'moment';
 import BaseDialog from 'components/base-dialog/base-dialog';
+import PoliticsComponent from 'layouts/components/politics-component';
+import TermsUseComponent from 'layouts/components/terms-use-component';
 
 export default {
   name: 'FooterComponent',
-  components: { BaseDialog },
+  components: { BaseDialog, PoliticsComponent, TermsUseComponent },
   computed: {
     currentYear() {
       return moment().format('YYYY');

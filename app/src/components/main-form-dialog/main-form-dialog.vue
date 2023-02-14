@@ -5,7 +5,7 @@
     class="main-form-dialog"
     @before-hide="close"
   >
-    <q-card class="test">
+    <q-card class="modal-card">
       <q-btn
         icon="close"
         flat
@@ -27,6 +27,12 @@
               Заявка на процедуру банкротства
             </div>
             <div
+              class="text-subtitle1 text-secondary"
+              v-if="companyName"
+            >
+              В компанию "{{ companyName }}"
+            </div>
+            <div
               class="popover-btn"
             >
               <q-icon
@@ -36,7 +42,7 @@
               />
               {{ label }}
               <q-popup-edit
-                anchor="center top"
+                anchor="center middle"
                 v-model="label"
               >
                 <div class="popover">
@@ -64,16 +70,14 @@
         v-if="!requested"
         class="q-mb-xl-md"
       >
-        <q-form
-          @submit="onSubmit"
+        <div
           class="q-col-gutter-md"
         >
           <div class="row q-col-gutter-md">
             <div class="col-xs-12 col-sm-6">
               <q-input
-                flat
                 v-model="form.fullName"
-                filled
+                outlined
                 color="secondary"
                 label="Фамилия, имя и отчество *"
                 hint="Введите ваши данные"
@@ -84,7 +88,7 @@
             <div class="col-xs-12 col-sm-6">
               <q-select
                 v-model="form.city"
-                filled
+                outlined
                 emit-value
                 :options="cityList"
                 use-input
@@ -108,78 +112,90 @@
           <div class="row q-col-gutter-md q-mb-md">
             <div class="col-xs-12 col-sm-6">
               <div class="column">
-                <div class="items-start justify-between flex row">
+                <div :class="{'mobile-phone-row': buttonContinueState && !acceptedPhone}">
                   <q-input
-                    class="col-auto"
-                    flat
+                    class=""
+                    outlined
                     v-model="form.phoneNumber"
-                    filled
+                    :disable="acceptedPhone"
                     label="Мобильный телефон *"
                     mask="phone"
                     color="secondary"
                     hint="Введите ваши данные"
                     lazy-rules
+                    prefix="+7"
                     :rules="[ val => val && val.length > 0
                       || 'Необходимо заполнить “Номер телефона”']"
                   >
-                    <template #prepend>
-                      <span>+ 7</span>
-                    </template>
                     <template #hint>
-                      На указанный номер будет отправлено подтверждающее SMS
+                      <div v-if="!showSmsCode">
+                        На указанный номер будет отправлено подтверждающее SMS
+                      </div>
+                      <div v-else>
+                        Мы отправили СМС с кодом на номер +7 (ХХХ) ХХХ-ХХ-ХХ
+                      </div>
+                    </template>
+                    <template
+                      #append
+                      v-if="acceptedPhone"
+                    >
+                      <q-icon
+                        name="mdi-check-circle"
+                        color="positive"
+                      />
                     </template>
                   </q-input>
-                  <button
-                    class="continueNumber col-auto"
-                    v-if="buttonContinueState"
-                    @click="sendPhoneSms"
-                  >
-                    Продолжить
-                  </button>
-                </div>
-
-                <div
-                  class="q-mt-md"
-                  v-if="showSmsCode"
-                >
-                  <div class="">
-                    Укажите код из СМС
-                  </div>
-                  <div class="">
-                    <div class="row q-gutter-x-sm justify-center">
-                      <otp-input
-                        class="sms-code-input"
-                        ref="otpInput"
-                        input-classes="otp-input"
-                        separator="-"
-                        :num-inputs="4"
-                        :should-auto-focus="true"
-                        :is-input-num="true"
-                        @on-complete="handleOnComplete"
-                      />
-                      <!--                      <q-input-->
-                      <!--                        outlined-->
-                      <!--                        v-for="i in inputLength"-->
-                      <!--                        v-model="fieldValues[i - 1]"-->
-                      <!--                        v-bind="$attrs"-->
-                      <!--                        mask="#"-->
-                      <!--                        @keyup="onKeyUp($event, i - 1)"-->
-                      <!--                        @update:model-value="onUpdate($event, i - 1)"-->
-                      <!--                        :key="i"-->
-                      <!--                        :ref="el => updateFieldRef(el, i - 1)"-->
-                      <!--                        maxlength="1"-->
-                      <!--                        input-class="text-center"-->
-                      <!--                        style="width: 6ch"-->
-                      <!--                      />-->
-                    </div>
-                    <div
-                      class=""
-                      v-if="true"
+                  <template v-if="$q.screen.width < 599">
+                    <button
+                      class="continueNumber"
+                      v-if="buttonContinueState && !acceptedPhone"
+                      @click="sendPhoneSms"
                     >
-                      Повтор отправки через 00:{{ currentTime }} сек
-                    </div>
-                  </div>
+                      <q-icon
+                        size="xl"
+                        name="mdi-chevron-right"
+                        color="white"
+                      />
+                    </button>
+                  </template>
+                  <template v-else>
+                    <button
+                      class="continueNumber"
+                      v-if="buttonContinueState && !acceptedPhone"
+                      @click="sendPhoneSms"
+                    >
+                      Продолжить
+                    </button>
+                  </template>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="q-mt-md"
+            v-if="showSmsCode && !acceptedPhone"
+          >
+            <div class="sms-code-subtitle">
+              Укажите код из СМС
+            </div>
+            <div class="">
+              <div class="row q-gutter-x-sm">
+                <otp-input
+                  class="sms-code-input"
+                  ref="otpInput"
+                  input-classes="otp-input"
+                  separator=""
+                  :num-inputs="4"
+                  :should-auto-focus="true"
+                  :is-input-num="true"
+                  @on-complete="handleOnComplete"
+                />
+              </div>
+              <div
+                class=""
+                v-if="true"
+              >
+                Повтор отправки через {{ currentTime }} сек
               </div>
             </div>
           </div>
@@ -289,14 +305,15 @@
               </div>
             </div>
           </div>
-        </q-form>
+        </div>
       </q-card-section>
 
-      <q-separator />
+      <q-separator v-if="!requested" />
 
       <q-card-actions
+        v-if="!requested"
         align="between"
-        class="items-center"
+        class="items-center q-pa-none actions"
       >
         <q-checkbox
           color="secondary"
@@ -304,12 +321,13 @@
           v-model="agree"
         />
         <q-btn
-          :disable="!agree"
+          :disable="!canSend"
           label="Отправить"
           icon-right="arrow_outward"
           color="secondary"
           class="base-button right-icon-secondary"
           outline
+          type="submit"
           rounded
           @click="onSubmit"
         />
@@ -322,7 +340,6 @@
 import { cities } from 'src/assets/cities';
 import { mapMutations } from 'vuex';
 import { notifyErrorSimple } from 'src/services/service-notification';
-import { backendApi } from 'src/api/backend';
 import { sendSms } from 'src/api/sms-auth';
 import OtpInput from '@bachdgvn/vue-otp-input';
 
@@ -345,6 +362,7 @@ export default {
       cities,
       cityList: cities,
       search: '',
+      companyName: '',
       currentTime: 30,
       form: {
         fullName: '',
@@ -401,6 +419,13 @@ export default {
     buttonContinueState() {
       return this.form.phoneNumber.length === 16;
     },
+    canSend() {
+      return this.form.fullName !== ''
+        && this.form.phoneNumber !== ''
+        && this.acceptedPhone
+        && this.city !== ''
+        && this.agree;
+    },
   },
   methods: {
     ...mapMutations('app', ['setCurrentCity']),
@@ -428,7 +453,8 @@ export default {
         this.cityList = cities.filter((v) => v.toLowerCase().indexOf(needle) > -1);
       });
     },
-    open() {
+    open(companyName) {
+      if (companyName) this.companyName = companyName;
       this.show = true;
     },
     close() {
@@ -458,19 +484,18 @@ export default {
     async sendSmsCode(code) {
       console.log(code);
       try {
-        // send code here await checkSmsCode
-        // answer
         this.acceptedPhone = true;
         this.showSmsCode = false;
       } catch (e) {
         notifyErrorSimple(e);
-        this.startTimer();
         this.errorMessage = true;
+        this.showSmsCode = true;
       }
     },
     async sendPhoneSms() {
       try {
-        await sendSms('79100070701');
+        await sendSms(this.form.phoneNumber);
+        this.startTimer();
         this.showSmsCode = true;
       } catch (e) {
         notifyErrorSimple(e);
@@ -479,10 +504,6 @@ export default {
     async onSubmit() {
       try {
         this.loading = true;
-        const request = {
-          ...this.form,
-        };
-        await backendApi.post('/url-for-api', request);
       } catch (e) {
         notifyErrorSimple('Произошла ошибка при отправке заявки', e);
       } finally {
@@ -518,7 +539,7 @@ export default {
     font-size: 13px;
   }
 }
-.test {
+.modal-card {
   max-width: 1100px;
   @media (max-width: $breakpoint-xs-max) {
     padding: 0;
@@ -533,9 +554,15 @@ export default {
   top: 5px;
   z-index: 100;
 }
+.actions {
+  padding-top: 20px;
+}
 .continueNumber {
   background: radial-gradient(50% 50% at 50% 50%, #48ACE8 0%, #028CD6 100%);
   color: white;
+  @media (max-width: $breakpoint-xs-max) {
+    width: 48px;
+  }
   width: 135px;
   display: flex;
   align-items: center;
@@ -549,25 +576,45 @@ export default {
   border-radius: 10px;
   justify-content: center;
 }
-.sms-code-input {
-  input {
-    background: #FAFAFA;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-    width: 50px;
-    text-align: center;
-    height: 50px;
-    font-family: 'Inter Tight',sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 23px;
-  }
-}
+
 .popover-btn {
   width: 314px;
   height: 44px;
   background: #FAFAFA;
   border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary;
+  font-family: 'Inter Tight', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+  margin: 0 auto;
+    .q-icon {
+      height: 24px;
+      width: 24px;
+    }
+  @media (max-width: $breakpoint-xs-max) {
+
+  }
+}
+.mobile-phone-row {
+  width: 100%;
+  display: flex;
+  .q-input {
+    width: 100%;
+    margin-right: 10px;
+  }
+}
+.sms-code-subtitle {
+  font-family: 'Inter Tight', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #4d4d4d;
+  line-height: 23px;
+  margin-bottom: 5px;
 }
 </style>

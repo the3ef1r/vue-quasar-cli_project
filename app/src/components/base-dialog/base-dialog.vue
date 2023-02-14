@@ -1,6 +1,7 @@
 <template>
   <q-dialog
     v-model="show"
+    :full-width="true"
     :full-height="isMobile"
     @before-hide="close"
   >

@@ -76,7 +76,6 @@ export default {
     changeCity() {
       this.$refs.changeCityDialog.open();
     },
-
   },
 };
 </script>

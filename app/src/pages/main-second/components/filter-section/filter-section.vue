@@ -67,6 +67,71 @@
         />
       </div>
     </div>
+    <div class="mega-block-grid">
+      <div class="mega-block column">
+        <div class="heading-h4 text-smaller q-mb-lg">
+          Повысить вероятность списания долгов в
+          <span class="text-secondary"> 3 раза по самой выгодной цене</span>
+        </div>
+        <div class="text">
+          На данный момент нами отобрано
+          <span class="text-secondary">{{ companies.length }} {{ companyWord }}</span>
+          в вашем регионе.
+          Для того, чтобы воспользоваться государственной процедурой списания долгов
+          для физических лиц просто отправьте заявку
+        </div>
+        <q-img
+          style="max-width: 305px"
+          src="img/one-request-section/img.svg"
+        />
+      </div>
+      <div class="mega-block column bg-secondary">
+        <div class="heading-h4 text-smaller q-mb-lg text-white">
+          Заполните 1 заявку и мы отправим её сразу во все проверенные юридические компании
+        </div>
+        <div class="q-mb-sm subtitle">
+          Уникальное предложение позволит:
+        </div>
+        <ul class="q-mb-xl list q-pl-none">
+          <li>
+            <q-icon
+              name="mdi-check-circle"
+              color="white"
+              class="q-mr-sm"
+            />Подобрать выгодные условия для вас в проверенных юридических компаниях
+          </li>
+          <li>
+            <q-icon
+              name="mdi-check-circle"
+              color="white"
+              class="q-mr-sm"
+            />Увеличить вероятность одобрения заявки
+          </li>
+          <li>
+            <q-icon
+              name="mdi-check-circle"
+              color="white"
+              class="q-mr-sm"
+            />Ускорить процесс подписания договора и избавиться от долгов
+          </li>
+          <li>
+            <q-icon
+              name="mdi-check-circle"
+              color="white"
+              class="q-mr-sm"
+            />Сократить 10 часов вашего времени на подборе компаний и сэкономить до 50 тыс. руб.
+            при заключении договора с юридической компанией
+          </li>
+        </ul>
+        <q-btn
+          class="bg-white text-dark  base-button right-icon-secondary"
+          label="Отправить заявку во все компании"
+          icon-right="arrow_outward"
+          rounded
+          @click="openDialog()"
+        />
+      </div>
+    </div>
     <change-city-dialog ref="changeCityDialog" />
     <main-form-dialog ref="formDialog" />
   </section-wrapper>
@@ -132,8 +197,8 @@ export default {
     changeCity() {
       this.$refs.changeCityDialog.open();
     },
-    openDialog() {
-      this.$refs.formDialog.open();
+    openDialog(companyName = null) {
+      this.$refs.formDialog.open(companyName);
     },
   },
 };
@@ -142,8 +207,83 @@ export default {
 .filter-section {
   .wrapper {
     @media (max-width: $breakpoint-xs-max) {
-
-    background-color: #fafafa;
+      background-color: #fafafa;
+    }
+  }
+  .mega-block-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    @media (max-width: $breakpoint-xs-max) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .mega-block {
+    padding: 40px 20px 40px 55px;
+    border-radius: 20px;
+    &:first-child {
+      align-items: center;
+      text-align: center;
+      @media (max-width: $breakpoint-xs-max) {
+        text-align: left;
+        padding: 30px 20px;
+      }
+    }
+    .text {
+      font-family: 'Inter Tight', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 36px;
+    }
+    .subtitle {
+      font-family: 'Unbounded', cursive;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 26px;
+    }
+    .heading-h4 {
+      font-size: 28px;
+    }
+    &:last-child {
+      color: white;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        left: -12px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 40px 20px 40px 0;
+        border-color: transparent $secondary transparent transparent;
+        top: 50%;
+      }
+    }
+    @media (max-width: $breakpoint-xs-max) {
+      border-radius: 0;
+      margin: 0 -10px;
+      padding: 30px 20px;
+      .heading-h4 {
+        font-size: 20px;
+        line-height: 25px;
+      }
+    }
+  }
+  .list {
+    color: white;
+    list-style: none;
+    li {
+      .q-icon {
+        margin-top: 4px;
+      }
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
     }
   }
 }

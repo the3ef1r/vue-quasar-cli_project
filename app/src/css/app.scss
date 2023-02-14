@@ -48,9 +48,9 @@
 }
 .base-button {
   text-transform: initial;
-  //padding: 14px 30px;
   height: 60px;
   min-width: 190px;
+  max-width: 365px;
 }
 .main-grey {
   color: $grey-main
@@ -82,5 +82,25 @@
   @media (max-width: $breakpoint-xs-max) {
     display: flex;
     align-items: center;
+  }
+}
+.q-popup-edit {
+  padding: 0;
+  border-radius: 20px;
+}
+.sms-code-input {
+  .otp-input {
+    background: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    width: 50px;
+    text-align: center;
+    height: 50px;
+    font-family: 'Inter Tight',sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    margin-right: 8px;
   }
 }
