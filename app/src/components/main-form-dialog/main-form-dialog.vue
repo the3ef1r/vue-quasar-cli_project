@@ -315,11 +315,20 @@
         align="between"
         class="items-center q-pa-none actions"
       >
-        <q-checkbox
-          color="secondary"
-          label="Согласие на обработку персональных данных и данных об абонентах *"
-          v-model="agree"
-        />
+        <div class="row items-center">
+          <q-checkbox
+            v-model="agree"
+            color="secondary"
+          />
+          <div class="">
+            Согласие на
+            <span
+              class="text-secondary"
+              @click="$refs.baseDialog.open()"
+            >обработку персональных данных и данных об абонентах *</span>
+          </div>
+        </div>
+
         <q-btn
           :disable="!canSend"
           label="Отправить"
@@ -333,6 +342,12 @@
         />
       </q-card-actions>
     </q-card>
+    <base-dialog
+      ref="baseDialog"
+      title="Политика обработки персональных данных"
+    >
+      <politics-component />
+    </base-dialog>
   </q-dialog>
 </template>
 
@@ -342,11 +357,15 @@ import { mapMutations } from 'vuex';
 import { notifyErrorSimple } from 'src/services/service-notification';
 import { sendSms } from 'src/api/sms-auth';
 import OtpInput from '@bachdgvn/vue-otp-input';
+import BaseDialog from 'components/base-dialog/base-dialog';
+import PoliticsComponent from 'layouts/components/politics-component';
 
 export default {
   name: 'MainFormDialog',
   components: {
     OtpInput,
+    BaseDialog,
+    PoliticsComponent,
   },
   data() {
     return {
