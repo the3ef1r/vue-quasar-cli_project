@@ -23,7 +23,7 @@
             src="icons/logo_alt.svg"
           />
           <template v-if="!requested">
-            <div class="heading-h4">
+            <div class="heading-h4 q-mb-md">
               Заявка на процедуру банкротства
             </div>
             <div
@@ -315,7 +315,7 @@
         align="between"
         class="items-center q-pa-none actions"
       >
-        <div class="row items-center">
+        <div class="row items-center no-wrap q-mb-md">
           <q-checkbox
             v-model="agree"
             color="secondary"
@@ -389,7 +389,7 @@ export default {
         phoneNumber: '',
         summModel: '1',
         howLongModel: '1',
-        estateModel: [],
+        estateModel: ['5'],
         ipotekaModel: 'yes',
         alimentModel: 'yes',
         creditModel: 'yes',
@@ -575,6 +575,10 @@ export default {
 }
 .actions {
   padding-top: 20px;
+  padding-bottom: 20px;
+  .base-button {
+    width: 100%;
+  }
 }
 .continueNumber {
   background: radial-gradient(50% 50% at 50% 50%, #48ACE8 0%, #028CD6 100%);
