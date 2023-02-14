@@ -61,7 +61,6 @@
                 :thickness="0.1"
                 rounded
                 color="secondary"
-                class="q-mr-md"
               >
                 {{ getValue(company.deals) }}%
               </q-circular-progress>
@@ -125,7 +124,6 @@
                 angle="1"
                 rounded
                 color="secondary"
-                class="q-mr-md"
               >
                 {{ getValue(company.deals) }}%
               </q-circular-progress>
